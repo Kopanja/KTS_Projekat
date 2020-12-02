@@ -33,6 +33,12 @@ public class User {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
 	    private Set<Content> comments;
 	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private Set<Review> reviews;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private Set<Subscription> subscriptions;
+	
 	 @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 		private Set<UserAuthority> userAuthorities = new HashSet<UserAuthority>();
 	public User() {

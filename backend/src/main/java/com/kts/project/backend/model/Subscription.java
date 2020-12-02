@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
@@ -18,11 +18,12 @@ public class Subscription {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	
-	 @OneToOne(fetch = FetchType.LAZY)
+	 @ManyToOne(fetch = FetchType.LAZY)
 	 @JoinColumn(name = "user_id")
-	    private User subscriber;
+	    private User user;
 	 
-	 @OneToOne(fetch = FetchType.LAZY)
+	 @ManyToOne(fetch = FetchType.LAZY)
 	 @JoinColumn(name = "co_id")
-	    private CulturalOffer publisher;
+	    private CulturalOffer culturalOffer;
+	    
 }

@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -26,11 +27,12 @@ public class Review {
 	@JoinColumn(name = "content_id")
 	private Content content;
 	
-	 @OneToOne(fetch = FetchType.LAZY)
+	 @ManyToOne(fetch = FetchType.LAZY)
 	 @JoinColumn(name = "user_id")
-	    private User author;
+	    private User user;
 	 
-	 @OneToOne(fetch = FetchType.LAZY)
+	 @ManyToOne(fetch = FetchType.LAZY)
 	 @JoinColumn(name = "co_id")
 	    private CulturalOffer culturalOffer;
+	    
 }

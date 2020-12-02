@@ -51,4 +51,11 @@ public class CulturalOffer {
 	 
 	 @OneToMany(fetch = FetchType.LAZY, mappedBy = "culturalOffer")
 	    private Set<Post> posts;
+	 
+	 @OneToMany(fetch = FetchType.LAZY, mappedBy = "culturalOffer")
+	    private Set<Review> reviews;
+	 
+	 @OneToMany(fetch = FetchType.LAZY, mappedBy = "culturalOffer")
+	    private Set<Subscription> subscriptions;
+	    
 }
