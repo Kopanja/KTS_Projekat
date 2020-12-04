@@ -19,7 +19,7 @@ import javax.persistence.Table;
 public class CulturalOffer {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column(name="NAME", length = 50, unique=true)

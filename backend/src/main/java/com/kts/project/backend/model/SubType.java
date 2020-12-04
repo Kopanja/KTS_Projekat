@@ -15,7 +15,7 @@ import javax.persistence.Table;
 public class SubType {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column(name="NAME", length = 50, unique=true)
@@ -24,4 +24,36 @@ public class SubType {
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "type_id")
     private Type type;
+
+	public SubType() {
+		
+	}
+	
+	
+	public SubType(Long id, String name, Type type) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.type = type;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public Type getType() {
+		return type;
+	}
+	public void setType(Type type) {
+		this.type = type;
+	}
+	
+	
 }
