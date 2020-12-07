@@ -8,4 +8,8 @@ import com.kts.project.backend.model.Authority;
 @Repository
 public interface AuthorityRepository extends JpaRepository<Authority, Long> {
 
+	Authority findByName(String name);
+
+	Authority findByNameAndIdNot(String name, Long id);
+
 }
