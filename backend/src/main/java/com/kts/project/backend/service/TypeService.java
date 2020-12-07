@@ -37,4 +37,31 @@ public class TypeService {
 	        }
 	        return typeRepo.save(entity);
 	}
+
+	public Type findOne(Long id) {
+		 return typeRepo.findById(id).orElse(null);
+	}
+
+	public Type update(Type entity, Long id) throws Exception {
+		Type existingType = typeRepo.findById(id).orElse(null);
+	        if(existingType == null){
+	            throw new Exception("Cultural content category with given id doesn't exist");
+	        }
+	        existingType.setName(entity.getName());
+	        if(typeRepo.findByNameAndIdNot(existingType.getName(), id) != null){
+	            throw new Exception("Cultural content category with given name already exists");
+	        }
+	        return typeRepo.save(existingType);
+	}
+
+	public void delete(Long id) throws Exception {
+		Type existingType = typeRepo.findById(id).orElse(null);
+        if(existingType == null){
+            throw new Exception("Cultural content category with given id doesn't exist");
+        }
+        typeRepo.delete(existingType);
+		
+	}
+	
+    
 }

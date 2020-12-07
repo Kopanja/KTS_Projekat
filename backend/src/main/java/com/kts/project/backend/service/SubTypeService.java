@@ -36,4 +36,29 @@ public class SubTypeService {
         }
         return subTypeRepo.save(entity);
 	}
+
+	public List<SubType> findAll(Long categoryId) {
+		return subTypeRepo.findByTypeId(categoryId);
+	}
+
+	public SubType update(SubType entity, Long id, Long typeId) throws Exception {
+		SubType existingSubType = null;
+		existingSubType =  subTypeRepo.findByTypeIdAndId(typeId, id);
+        if(existingSubType == null){
+            throw new Exception("Category type with given id doesn't exist");
+        }
+        existingSubType.setName(entity.getName());
+        if(subTypeRepo.findByNameAndIdNot(existingSubType.getName(), id) != null){
+            throw new Exception("Category type with given name already exists");
+        }
+        return subTypeRepo.save(existingSubType);
+	}
+
+	public void delete(Long id, Long typeId) throws Exception {
+		SubType existingCategoryType = subTypeRepo.findByTypeIdAndId(typeId, id);
+        if(existingCategoryType == null){
+            throw new Exception("Category type with given id doesn't exist");
+        }
+        subTypeRepo.delete(existingCategoryType);		
+	}
 }

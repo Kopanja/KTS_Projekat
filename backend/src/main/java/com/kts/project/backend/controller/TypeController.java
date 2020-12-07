@@ -26,7 +26,7 @@ import com.kts.project.backend.util.mapper.SubTypeMapper;
 import com.kts.project.backend.util.mapper.TypeMapper;
 
 @RestController
-@RequestMapping(value =  "/api/category-type", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value =  "/api/category-types", produces = MediaType.APPLICATION_JSON_VALUE)
 public class TypeController {
 	@Autowired
 	TypeService typeService;
@@ -55,7 +55,17 @@ public class TypeController {
         return new ResponseEntity<>(pageCulturalContentCategoryDTOS, HttpStatus.OK);
     }
 	
-	@RequestMapping(value="/{name}",method = RequestMethod.GET)
+	@RequestMapping(value="/{id}",method = RequestMethod.GET)
+    public ResponseEntity<TypeDTO> getTypeById(@PathVariable Long id) {
+        
+		Type type = typeService.findOne(id);
+        if(type == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(typeMapper.toDto(type), HttpStatus.OK);
+    }
+	
+	@RequestMapping(value="/name/{name}",method = RequestMethod.GET)
     public ResponseEntity<TypeDTO> getTypeByName(@PathVariable String name) {
         
 		Type type = typeService.findByName(name);
@@ -64,6 +74,7 @@ public class TypeController {
         }
         return new ResponseEntity<>(typeMapper.toDto(type), HttpStatus.OK);
     }
+
 	
 	@RequestMapping(method=RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<TypeDTO> createNewType(@RequestBody TypeDTO typeDTO){
@@ -79,6 +90,30 @@ public class TypeController {
         }
 
         return new ResponseEntity<>(typeMapper.toDto(type), HttpStatus.CREATED);
+    }
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<TypeDTO> updateType(
+            @RequestBody TypeDTO typeDTO, @PathVariable Long id){
+		Type type;
+        try {
+            type = typeService.update(typeMapper.toEntity(typeDTO), id);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<>(typeMapper.toDto(type), HttpStatus.OK);
+    }
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+    public ResponseEntity<Void> deleteType(@PathVariable Long id){
+        try {
+            typeService.delete(id);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 	
 	private List<TypeDTO> toTypeDTOList(List<Type> categoryTypes) {
@@ -117,15 +152,18 @@ public class TypeController {
         return new ResponseEntity<>(subTypeMapper.toDto(type), HttpStatus.OK);
     }
 	
-	@RequestMapping(value="/sub-types",method=RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<SubTypeDTO> createNewType(@RequestBody SubTypeDTO subTypeDTO){
+	@RequestMapping(value="/{typeId}/sub-types",method=RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<SubTypeDTO> createNewType(@PathVariable Long typeId,@RequestBody SubTypeDTO subTypeDTO){
         
 		SubType subType;
         try {
         	subTypeDTO.setId(null);
-        	System.out.println(subTypeDTO.getId());
+        	
+        	Type type = typeService.findOne(typeId);
+        	TypeDTO typeDTO = typeMapper.toDto(type);
+        	subTypeDTO.setParentType(typeDTO);
+        	
         	subType = subTypeService.create(subTypeMapper.toEntity(subTypeDTO));
-            System.out.println(subType.getName());
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -140,5 +178,41 @@ public class TypeController {
         }
         return categorySubTypeDTOS;
     }
+	
+	//CRUD Operacije za podtipove konkretnog tipa
+	
+	@RequestMapping(value = "/{typeId}/sub-types", method = RequestMethod.GET)
+    public ResponseEntity<List<SubTypeDTO>> getAllSubTypesFromParent(@PathVariable Long typeId) {
+        List<SubType> categoryTypes = subTypeService.findAll(typeId);
+        return new ResponseEntity<>(toSubTypeDTOList(categoryTypes), HttpStatus.OK);
+    }
+	
+	 @RequestMapping(value="/{typeId}/sub-types/{id}", method=RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+	    public ResponseEntity<SubTypeDTO> updateSubType(
+	            @RequestBody SubTypeDTO subTypeDTO,@PathVariable Long typeId, @PathVariable Long id){
+	        SubType subType;
+	        
+	        Type type = typeService.findOne(typeId);
+        	TypeDTO typeDTO = typeMapper.toDto(type);
+        	subTypeDTO.setParentType(typeDTO);
+        	
+	        try {
+	            subType = subTypeService.update(subTypeMapper.toEntity(subTypeDTO), id, typeId);
+	        } catch (Exception e) {
+	            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	        }
 
+	        return new ResponseEntity<>(subTypeMapper.toDto(subType), HttpStatus.OK);
+	    }
+	 
+	 @RequestMapping(value="/{typeId}/sub-types/{id}", method=RequestMethod.DELETE)
+	    public ResponseEntity<Void> deleteCategoryType(@PathVariable Long typeId, @PathVariable Long id){
+	        try {
+	            subTypeService.delete(id, typeId);
+	        } catch (Exception e) {
+	            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	        }
+
+	        return new ResponseEntity<>(HttpStatus.OK);
+	    }
 }
