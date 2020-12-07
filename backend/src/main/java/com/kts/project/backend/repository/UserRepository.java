@@ -8,4 +8,8 @@ import com.kts.project.backend.model.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
+	User findByEmail(String email);
+
+	User findByEmailAndIdNot(String email, Long id);
+
 }
