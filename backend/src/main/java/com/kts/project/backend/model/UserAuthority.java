@@ -20,6 +20,18 @@ public class UserAuthority {
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
 	private Authority authority;
 
+	
+	public UserAuthority() {
+		super();
+	}
+
+	public UserAuthority(Long id, User user, Authority authority) {
+		super();
+		this.id = id;
+		this.user = user;
+		this.authority = authority;
+	}
+
 	public Long getId() {
 		return id;
 	}

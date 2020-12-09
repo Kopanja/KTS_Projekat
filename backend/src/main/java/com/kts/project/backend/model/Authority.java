@@ -13,10 +13,12 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.security.core.GrantedAuthority;
+
 
 @Entity
 @Table(name="AUTHORITY")
-public class Authority {
+public class Authority{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
@@ -26,6 +28,19 @@ public class Authority {
 	
 	@OneToMany(mappedBy = "authority", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 	private Set<UserAuthority> userAuthorities = new HashSet<UserAuthority>();
+
+	
+	
+	public Authority() {
+		super();
+	}
+
+	public Authority(Long id, String name, Set<UserAuthority> userAuthorities) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.userAuthorities = userAuthorities;
+	}
 
 	public Long getId() {
 		return id;
@@ -50,6 +65,8 @@ public class Authority {
 	public void setUserAuthorities(Set<UserAuthority> userAuthorities) {
 		this.userAuthorities = userAuthorities;
 	}
+
+	
 
 	
 }

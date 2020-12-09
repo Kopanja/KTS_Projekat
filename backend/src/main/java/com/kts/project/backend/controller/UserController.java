@@ -6,22 +6,25 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Role;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.kts.project.backend.dto.TypeDTO;
+import com.kts.project.backend.dto.LoginDTO;
 import com.kts.project.backend.dto.UserDTO;
-import com.kts.project.backend.model.Type;
 import com.kts.project.backend.model.User;
+import com.kts.project.backend.model.UserAuthority;
 import com.kts.project.backend.service.UserService;
 import com.kts.project.backend.util.mapper.UserMapper;
 
@@ -32,7 +35,7 @@ public class UserController {
 	UserService userService;
 	UserMapper userMapper = new UserMapper();
 	
-	
+	@PreAuthorize("hasRole('ROLE_CONSUMER')")
 	@RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<UserDTO>> getAllUsers() {
         
@@ -58,6 +61,23 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(userMapper.toDto(user), HttpStatus.OK);
+    }
+	
+	// Endpoint za registraciju novog korisnika
+    @PostMapping("/sign-up")
+    public ResponseEntity<?> addUser(@RequestBody LoginDTO userRequest) throws Exception {
+
+        User existUser = this.userService.findByEmail(userRequest.getEmail());
+        if (existUser != null) {
+            throw new Exception("Username already exists");
+        }
+
+        try {
+            existUser = userService.create(userMapper.toEntity(userRequest));
+        } catch (Exception e) {
+            return new ResponseEntity<>(e, HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(userMapper.toDto(existUser), HttpStatus.CREATED);
     }
 	
 	@RequestMapping(method=RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
