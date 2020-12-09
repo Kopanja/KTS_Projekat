@@ -25,6 +25,7 @@ import com.kts.project.backend.dto.LoginDTO;
 import com.kts.project.backend.dto.UserDTO;
 import com.kts.project.backend.model.User;
 import com.kts.project.backend.model.UserAuthority;
+import com.kts.project.backend.service.UserAuthorityService;
 import com.kts.project.backend.service.UserService;
 import com.kts.project.backend.util.mapper.UserMapper;
 
@@ -35,7 +36,10 @@ public class UserController {
 	UserService userService;
 	UserMapper userMapper = new UserMapper();
 	
-	@PreAuthorize("hasRole('ROLE_CONSUMER')")
+	@Autowired
+	UserAuthorityService userAuthService;
+	
+	//@PreAuthorize("hasRole('ROLE_CONSUMER')")
 	@RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<UserDTO>> getAllUsers() {
         

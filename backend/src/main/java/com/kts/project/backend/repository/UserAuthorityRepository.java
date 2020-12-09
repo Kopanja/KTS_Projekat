@@ -8,4 +8,6 @@ import com.kts.project.backend.model.UserAuthority;
 @Repository
 public interface UserAuthorityRepository extends JpaRepository<UserAuthority, Long> {
 
+	UserAuthority findByAuthorityIdAndUserId(Long id, Long id2);
+
 }

@@ -51,6 +51,7 @@ public class UserService implements UserDetailsService {
 		if(userRepo.findByEmail(entity.getEmail()) != null){
             throw new Exception("User with given email already exists");
         }
+	
         return userRepo.save(entity);
 	}
 

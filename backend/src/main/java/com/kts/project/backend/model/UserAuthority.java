@@ -25,6 +25,15 @@ public class UserAuthority {
 		super();
 	}
 
+	
+	public UserAuthority(User user, Authority authority) {
+		super();
+		this.id = null;
+		this.user = user;
+		this.authority = authority;
+	}
+
+
 	public UserAuthority(Long id, User user, Authority authority) {
 		super();
 		this.id = id;

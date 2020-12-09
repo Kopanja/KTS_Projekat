@@ -28,6 +28,10 @@ public class AuthorityService {
 	public Authority findOne(Long id) {
 		return authorityRepo.findById(id).orElse(null);
 	}
+	
+	public Authority findByName(String name) {
+		return authorityRepo.findByName(name);
+	}
 
 	public Authority create(Authority authority) throws Exception {
 		 if(authorityRepo.findByName(authority.getName()) != null){

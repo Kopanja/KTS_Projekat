@@ -18,6 +18,7 @@ import com.kts.project.backend.dto.UserTokenStateDTO;
 import com.kts.project.backend.model.User;
 import com.kts.project.backend.security.TokenBasedAuthentication;
 import com.kts.project.backend.security.TokenUtils;
+import com.kts.project.backend.service.UserAuthorityService;
 import com.kts.project.backend.service.UserService;
 import com.kts.project.backend.util.mapper.UserMapper;
 
@@ -39,7 +40,8 @@ public class AuthenticationController {
 
     @Autowired
     private UserService userService;
-
+    @Autowired
+    private UserAuthorityService userAuthService;
     @Autowired
     private  PasswordEncoder passwordEncoder;
     
@@ -77,8 +79,11 @@ public class AuthenticationController {
         }
 
         try {
+        	//sifrovanje passworda
         	userRequest.setPassword(passwordEncoder.encode(userRequest.getPassword()));
+        	
             existUser = userService.create(userMapper.toEntity(userRequest));
+            userAuthService.create(existUser.getId(), "ROLE_CONSUMER");
         } catch (Exception e) {
             return new ResponseEntity<>(e, HttpStatus.BAD_REQUEST);
         }
