@@ -78,6 +78,7 @@ public class UserController {
 
         try {
             existUser = userService.create(userMapper.toEntity(userRequest));
+            userAuthService.create(existUser.getId(), "ROLE_CONSUMER");
         } catch (Exception e) {
             return new ResponseEntity<>(e, HttpStatus.BAD_REQUEST);
         }
