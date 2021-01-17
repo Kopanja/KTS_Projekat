@@ -54,6 +54,11 @@ public class AuthenticationController {
                                                                     HttpServletResponse response) {
 
 
+    	System.out.println("---------------------------------------------------------------------------");
+    	System.out.println(authenticationRequest.getEmail());
+    	System.out.println(authenticationRequest.getPassword());
+    	System.out.println("---------------------------------------------------------------------------");
+
         Authentication authentication = authenticationManager
                 .authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getEmail(),
                         authenticationRequest.getPassword()));

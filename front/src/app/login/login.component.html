@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6">
+        <form class="form-signin" (ngSubmit)="login()">
+          <h2 class="form-signin-heading">Please sign in</h2>
+          <label for="email" class="sr-only">Email</label>
+          <input type="text" id="email" class="form-control" name="email" [(ngModel)]="user.email" placeholder="Email"
+            required autofocus>
+          <label for="inputPassword" class="sr-only">Password</label>
+          <input type="password" id="inputPassword" class="form-control" name="password" [(ngModel)]="user.password" placeholder="Password"
+            required>
+          <button class="btn btn-primary btn-block" type="submit">Sign in</button>
+        </form>
+        <div *ngIf=wrongUsernameOrPass class="alert alert-warning box-msg" role="alert">
+          Wrong username or password.
+        </div>
+      </div>
+      <div class="col-md-3"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+          <form class="form-signin" (ngSubmit)="isLogedIn()">
+            <h2 class="form-signin-heading">Please sign in</h2>
+            <button class="btn btn-primary btn-block" type="submit">Sign in</button>
+          </form>
+          <div *ngIf=wrongUsernameOrPass class="alert alert-warning box-msg" role="alert">
+            Wrong username or password.
+          </div>
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+  </div>

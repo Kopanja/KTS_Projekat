@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { User } from './model/user.model';
+import usersData from './util/usersData';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'front';
+
+  ngOnInit(){
+    
+  }
 }
