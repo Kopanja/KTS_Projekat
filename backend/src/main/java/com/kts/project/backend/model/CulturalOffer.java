@@ -25,8 +25,9 @@ public class CulturalOffer {
 	@Column(name="NAME", length = 50, unique=true)
 	private String name;
 	
-	@Column(name="LOCATION", length = 50, unique=true)
-	private String location;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "location_id")
+	 private COLocation location;
 	
 	@Column(name= "CONTACT", length = 50)
 	private String contact;

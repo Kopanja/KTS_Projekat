@@ -1,14 +1,10 @@
 package com.kts.project.backend.dto;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 
 public class UserDTO {
 
 	private Long id;
 	
-	@NotBlank(message = "Email cannot be empty.")
-    @Email(message = "Email format is not valid.")
 	private String email;
 	
 	
@@ -18,7 +14,7 @@ public class UserDTO {
 
 	
 	
-	public UserDTO(Long id, @NotBlank(message = "Email cannot be empty.") @Email(message = "Email format is not valid.") String email) {
+	public UserDTO(Long id, String email) {
 		super();
 		this.id = id;
 		this.email = email;

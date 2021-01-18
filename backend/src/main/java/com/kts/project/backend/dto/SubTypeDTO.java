@@ -1,12 +1,10 @@
 package com.kts.project.backend.dto;
 
-import javax.validation.constraints.NotBlank;
-
+//Mora da se doda Validation, ne radi na desktopu iz nekog razloga
 public class SubTypeDTO {
 
 	private Long id;
 	
-	@NotBlank(message = "Name cannot be empty.")
     private String name;
 	
 	private TypeDTO parentType;
@@ -15,7 +13,7 @@ public class SubTypeDTO {
     	
     }
 
-	public SubTypeDTO(Long id, @NotBlank(message = "Name cannot be empty.") String name, TypeDTO parentType) {
+	public SubTypeDTO(Long id, String name, TypeDTO parentType) {
 		super();
 		this.id = id;
 		this.name = name;

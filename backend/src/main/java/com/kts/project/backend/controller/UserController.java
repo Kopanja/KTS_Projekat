@@ -3,7 +3,6 @@ package com.kts.project.backend.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Role;
@@ -86,7 +85,7 @@ public class UserController {
     }
 	
 	@RequestMapping(method=RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<UserDTO> createNewUser(@RequestBody @Valid UserDTO userDTO){
+    public ResponseEntity<UserDTO> createNewUser(@RequestBody UserDTO userDTO){
         
 		User user;
         try {
