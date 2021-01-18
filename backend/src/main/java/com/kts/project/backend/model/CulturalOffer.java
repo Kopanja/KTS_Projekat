@@ -42,9 +42,6 @@ public class CulturalOffer {
 	 @JoinColumn(name = "admin_id")
 	 private User admin;
 	 
-	 @ManyToOne(fetch = FetchType.LAZY)
-	 @JoinColumn(name = "type_id")
-	 private SubType type;
 	 
 	 @ManyToOne(fetch = FetchType.LAZY)
 	 @JoinColumn(name = "subType_id")
@@ -58,5 +55,212 @@ public class CulturalOffer {
 	 
 	 @OneToMany(fetch = FetchType.LAZY, mappedBy = "culturalOffer")
 	    private Set<Subscription> subscriptions;
+
+	 
+	 
+	 
+	 
+	public CulturalOffer() {
+		super();
+	}
+
+
+
+
+
+	public CulturalOffer(Long id, String name, COLocation location, String contact, double rating, String description,
+			User admin, SubType subType, Set<Post> posts, Set<Review> reviews,
+			Set<Subscription> subscriptions) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.location = location;
+		this.contact = contact;
+		this.rating = rating;
+		this.description = description;
+		this.admin = admin;
+		this.subType = subType;
+		this.posts = posts;
+		this.reviews = reviews;
+		this.subscriptions = subscriptions;
+	}
+
+
+
+
+
+	public Long getId() {
+		return id;
+	}
+
+
+
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
+
+
+
+	public String getName() {
+		return name;
+	}
+
+
+
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+
+
+
+	public COLocation getLocation() {
+		return location;
+	}
+
+
+
+
+
+	public void setLocation(COLocation location) {
+		this.location = location;
+	}
+
+
+
+
+
+	public String getContact() {
+		return contact;
+	}
+
+
+
+
+
+	public void setContact(String contact) {
+		this.contact = contact;
+	}
+
+
+
+
+
+	public double getRating() {
+		return rating;
+	}
+
+
+
+
+
+	public void setRating(double rating) {
+		this.rating = rating;
+	}
+
+
+
+
+
+	public String getDescription() {
+		return description;
+	}
+
+
+
+
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+
+
+
+
+	public User getAdmin() {
+		return admin;
+	}
+
+
+
+
+
+	public void setAdmin(User admin) {
+		this.admin = admin;
+	}
+
+
+
+
+
+	public SubType getSubType() {
+		return subType;
+	}
+
+
+
+
+
+	public void setSubType(SubType subType) {
+		this.subType = subType;
+	}
+
+
+
+
+
+	public Set<Post> getPosts() {
+		return posts;
+	}
+
+
+
+
+
+	public void setPosts(Set<Post> posts) {
+		this.posts = posts;
+	}
+
+
+
+
+
+	public Set<Review> getReviews() {
+		return reviews;
+	}
+
+
+
+
+
+	public void setReviews(Set<Review> reviews) {
+		this.reviews = reviews;
+	}
+
+
+
+
+
+	public Set<Subscription> getSubscriptions() {
+		return subscriptions;
+	}
+
+
+
+
+
+	public void setSubscriptions(Set<Subscription> subscriptions) {
+		this.subscriptions = subscriptions;
+	}
+	 
+	 
 	    
 }

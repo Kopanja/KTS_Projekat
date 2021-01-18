@@ -23,8 +23,6 @@ public class Type {
 	@Column(name="NAME", length = 50, unique=true)
 	private String name;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "type")
-    private Set<SubType> subTypes;
 
 	public Type() {
 		
@@ -36,12 +34,6 @@ public class Type {
 		this.name = name;
 	}
 
-	public Type(Long id, String name, Set<SubType> subTypes) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.subTypes = subTypes;
-	}
 
 	public Long getId() {
 		return id;
@@ -59,13 +51,7 @@ public class Type {
 		this.name = name;
 	}
 
-	public Set<SubType> getSubTypes() {
-		return subTypes;
-	}
 
-	public void setSubTypes(Set<SubType> subTypes) {
-		this.subTypes = subTypes;
-	}
 	
 	
 }

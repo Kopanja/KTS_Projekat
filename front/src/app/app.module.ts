@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { MainPageComponent } from './main-page/main-page.component';
 import { MapComponentComponent } from './map-component/map-component.component';
+import { CulturalOfferComponent } from './cultural-offer/cultural-offer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,6 +17,7 @@ import { MapComponentComponent } from './map-component/map-component.component';
     LoginComponent,
     MainPageComponent,
     MapComponentComponent,
+    CulturalOfferComponent,
     
   ],
   imports: [

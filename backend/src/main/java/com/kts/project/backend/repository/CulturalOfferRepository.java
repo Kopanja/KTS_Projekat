@@ -8,4 +8,5 @@ import com.kts.project.backend.model.CulturalOffer;
 @Repository
 public interface CulturalOfferRepository extends JpaRepository<CulturalOffer, Long> {
 
+	CulturalOffer findByName(String name);
 }
