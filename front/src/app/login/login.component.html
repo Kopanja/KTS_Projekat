@@ -1,34 +1,41 @@
-<div class="container">
-    <div class="row">
-      <div class="col-md-3"></div>
-      <div class="col-md-6">
-        <form class="form-signin" (ngSubmit)="login()">
-          <h2 class="form-signin-heading">Please sign in</h2>
-          <label for="email" class="sr-only">Email</label>
-          <input type="text" id="email" class="form-control" name="email" [(ngModel)]="user.email" placeholder="Email"
-            required autofocus>
-          <label for="inputPassword" class="sr-only">Password</label>
-          <input type="password" id="inputPassword" class="form-control" name="password" [(ngModel)]="user.password" placeholder="Password"
-            required>
-          <button class="btn btn-primary btn-block" type="submit">Sign in</button>
-        </form>
-        <div *ngIf=wrongUsernameOrPass class="alert alert-warning box-msg" role="alert">
-          Wrong username or password.
+
+<div class="container-fluid container-padding">
+
+  <div class="d-flex justify-content-center">
+      <h1>CULTURAL OFFER LOG IN</h1>
+</div>
+</div>
+
+  <div class="container-fluid container-padding" id="logInForm">
+
+    <div class="logIn-container">
+        <h2 class="d-flex justify-content-center mt-4" style="font-weight: 800;">Log In:</h2>
+      
+        <div class="row d-flex justify-content-center">
+            <p class="col-lg-4 col-md-6 col-sm-8 mt-4" style="color: #dddddd; text-align: center;">Log in to your account to find, rate and comment on Cultural Offers.</p>
         </div>
-      </div>
-      <div class="col-md-3"></div>
-    </div>
-    <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
-          <form class="form-signin" (ngSubmit)="isLogedIn()">
-            <h2 class="form-signin-heading">Please sign in</h2>
-            <button class="btn btn-primary btn-block" type="submit">Sign in</button>
-          </form>
-          <div *ngIf=wrongUsernameOrPass class="alert alert-warning box-msg" role="alert">
-            Wrong username or password.
+
+        <form style="padding: 0 30%; color: #dddddd;" id="logInForm" (ngSubmit)="login()">
+          <div class="mb-3">
+            <label for="logInEmail" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" [(ngModel)]="user.email">
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
           </div>
-        </div>
-        <div class="col-md-3"></div>
-      </div>
-  </div>
+          <div class="mb-3">
+            <label for="logInPassword" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password" [(ngModel)]="user.password">
+          </div>
+          <div class=" mb-3 form-check">
+              <div class="col">
+                  <input type="checkbox" class="form-check-input" id="rememberMeCheck">
+                  <label class="form-check-label" for="rememberMeCheck">Remember me</label>
+                  <a style="padding-left: 30%; color: #f05454; text-decoration: none;" href="" id="forgotPassword">Forgot Password?</a>
+              </div>
+          </div>
+          <div class="d-flex justify-content-center">
+              <button type="submit" class="btn btn-danger" id="logInButton">Log In</button>
+          </div>
+          
+        </form>
+    </div>
+

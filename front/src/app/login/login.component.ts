@@ -23,15 +23,15 @@ export class LoginComponent implements OnInit {
      }
 
   ngOnInit(): void {
+    
   }
 
   login():void{
-    
+    console.log(this.user.email)
     this.authenticationService.login(this.user.email, this.user.password).subscribe(
       (loggedIn:boolean) => {
         if(loggedIn){
-          console.log('Uspelo');
-          //this.router.navigate(['/main']);          
+          this.router.navigate(['/main-page']);          
         }
       }
     ,
@@ -45,6 +45,7 @@ export class LoginComponent implements OnInit {
         Observable.throw(err);
       }
     });
+    
   }
 
   isLogedIn():void{

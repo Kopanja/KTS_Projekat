@@ -10,6 +10,8 @@ import { FormsModule } from '@angular/forms';
 import { MainPageComponent } from './main-page/main-page.component';
 import { MapComponentComponent } from './map-component/map-component.component';
 import { CulturalOfferComponent } from './cultural-offer/cultural-offer.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { FiltersComponent } from './filters/filters.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,6 +20,8 @@ import { CulturalOfferComponent } from './cultural-offer/cultural-offer.componen
     MainPageComponent,
     MapComponentComponent,
     CulturalOfferComponent,
+    NavbarComponent,
+    FiltersComponent,
     
   ],
   imports: [

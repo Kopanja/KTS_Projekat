@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { JwtUtilService } from './jwt-util.service';
 import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import {LogedInUser} from "../model/loged-in-user.model";
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ import { Observable } from 'rxjs';
 export class AuthenticationService {
 
   private readonly loginPath = 'http://localhost:8080/api/auth/log-in';
-
+  public isLogedIn = new Subject<boolean>();
+  public logedInUser = new Subject<LogedInUser>();
   constructor(private http: HttpClient, private jwtUtilService: JwtUtilService) { }
 
   login(email: string, password: string): Observable<boolean> {
@@ -28,7 +30,9 @@ export class AuthenticationService {
             roles: this.jwtUtilService.getRoles(token),
             token: res['accessToken']
           }));
-          console.log("GOTOV");
+          this.logedInUser.next(this.getCurrentUser());
+          console.log(this.getCurrentUser());
+          this.isLogedIn.next(true);
           return true;
         }
         else {
@@ -47,11 +51,18 @@ export class AuthenticationService {
 
   logout(): void {
     localStorage.removeItem('currentUser');
+    this.logedInUser.next(undefined);
+    this.isLogedIn.next(true);
   }
 
   isLoggedIn(): boolean {
-    if (this.getToken() != "") return true;
-    else return false;
+    if (this.getToken() != "") {
+      return true
+    }
+    else {
+      this.isLogedIn.next();
+      return false
+    };
   }
 
   getCurrentUser() {

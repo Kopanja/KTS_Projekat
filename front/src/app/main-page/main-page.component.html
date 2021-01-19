@@ -1,1 +1,42 @@
-<p>main-page works!</p>
+
+<div class="container-fluid container-padding" id="search">
+
+    <div class="d-flex justify-content-center">
+        <h1>FIND A CULTURAL OFFER</h1>
+</div>
+
+<form class="d-flex justify-content-center form-group row">
+    <div class="col-lg-9">
+        <input class="form-control form-control-lg" id="searchInput" type="search" placeholder="Search" aria-label="Search">
+    </div>
+    <div class="col-lg-2">
+        <button class="btn btn-lg btn-danger" id="searchButton" type="submit">Search</button>
+    </div>
+  </form>
+</div>
+<app-filters></app-filters>
+<div> 
+    <h2 class="d-flex justify-content-center mt-4">Find on Map</h2>
+</div>
+<app-map-component class="d-flex justify-content-center my-4"></app-map-component>
+
+          <!--Featured-->
+
+          <div class="container-fluid container-padding" id="featuredManifestations">
+
+            <div>
+              <h2 class="d-flex justify-content-center mt-4">Featured Manifestations</h2>
+            </div>
+            </div>
+  
+            <!--Add Offer-->
+  
+            <div id="addOffer">
+              <div class="container-fluid container-padding d-flex justify-content-center" >
+                <h2 class="mt-4">Want to Feature Your Offer?</h2>
+              </div>
+    
+                <div class="d-flex justify-content-center">
+                  <button class="btn btn-danger my-4 secondary-button" type="submit" id="addOfferButton">ADD YOUR OFFER NOW</button>
+                </div>
+            </div>
