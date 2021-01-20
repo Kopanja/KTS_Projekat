@@ -12,6 +12,10 @@ import { MapComponentComponent } from './map-component/map-component.component';
 import { CulturalOfferComponent } from './cultural-offer/cultural-offer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FiltersComponent } from './filters/filters.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { CulturalOfferApplicationComponent } from './cultural-offer-application/cultural-offer-application.component';
+import { SuperAdminPageComponent } from './super-admin-page/super-admin-page.component';
+import { CoApplicationListComponent } from './co-application-list/co-application-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +26,10 @@ import { FiltersComponent } from './filters/filters.component';
     CulturalOfferComponent,
     NavbarComponent,
     FiltersComponent,
+    SignUpComponent,
+    CulturalOfferApplicationComponent,
+    SuperAdminPageComponent,
+    CoApplicationListComponent,
     
   ],
   imports: [

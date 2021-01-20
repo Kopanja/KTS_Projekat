@@ -1,5 +1,7 @@
 package com.kts.project.backend.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,5 +31,24 @@ public class UserAuthorityService {
             throw new Exception("Cultural content category with given name already exists");
         }
         return userAuthorityRepo.save(userAuth);
+	}
+	
+	public void deleteByUser(Long userId) throws Exception {
+		UserAuthority userAuth = userAuthorityRepo.findByUserId(userId);
+		if(userAuth == null) {
+			throw new Exception("UserAuthority with given User ID doesn't exist");
+		}
+		userAuthorityRepo.delete(userAuth);
+		
+	}
+	
+	public void deleteByAuthority(Long authorityId) throws Exception {
+		List<UserAuthority> userAuths = userAuthorityRepo.findAllByAuthorityId(authorityId);
+		if(userAuths == null) {
+			throw new Exception("UserAuthority with given User ID doesn't exist");
+		}
+		for(UserAuthority userAuth : userAuths) {
+			userAuthorityRepo.delete(userAuth);
+		}
 	}
 }

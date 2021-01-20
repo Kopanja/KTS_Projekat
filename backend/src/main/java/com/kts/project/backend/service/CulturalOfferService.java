@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.kts.project.backend.dto.CulturalOfferDTO;
 import com.kts.project.backend.model.COLocation;
+import com.kts.project.backend.model.CORegistrationForm;
 import com.kts.project.backend.model.CulturalOffer;
+import com.kts.project.backend.model.User;
 import com.kts.project.backend.repository.CulturalOfferRepository;
 import com.kts.project.backend.repository.LocationRepository;
 import com.kts.project.backend.util.mapper.CulturalOfferMapper;
@@ -59,6 +61,14 @@ public class CulturalOfferService {
 		COLocation location = this.createLocation(locationDTO);
 		existingCO.setLocation(location);
 		return mapper.toDto(culturalOfferRepo.save(existingCO));
+	}
+	
+	public CulturalOfferDTO createCulturalOfferFromApplication(CORegistrationForm form, User admin) {
+		CulturalOffer culturalOffer = new CulturalOffer();
+		culturalOffer.setAdmin(admin);
+		culturalOffer.setName(form.getName());
+		culturalOffer.setSubType(subTypeService.findByName(form.getSubType()));
+		return mapper.toDto(culturalOfferRepo.save(culturalOffer));
 	}
 	
 	

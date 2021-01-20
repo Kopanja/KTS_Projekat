@@ -16,7 +16,7 @@
            <a routerLink="/login-page" routerLinkActive="active" class="nav-link" id="logInLink" *ngIf="!isLogedIn" href="">Log In</a>
        </li>
        <li class="nav-item">
-           <a class="nav-link" id="signUpLink" *ngIf="!isLogedIn" href="">Sign Up</a>
+           <a routerLink="/signup-page" class="nav-link" id="signUpLink" *ngIf="!isLogedIn" href="">Sign Up</a>
        </li>
        <li class="nav-item">
         <a class="nav-link" id="userProfileLink" *ngIf="isLogedIn" href="">{{logedInUser.email}}</a>

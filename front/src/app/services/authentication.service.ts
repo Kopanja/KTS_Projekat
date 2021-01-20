@@ -11,6 +11,7 @@ import {LogedInUser} from "../model/loged-in-user.model";
 export class AuthenticationService {
 
   private readonly loginPath = 'http://localhost:8080/api/auth/log-in';
+  private readonly signUpPath = 'http://localhost:8080/api/auth/sign-up';
   public isLogedIn = new Subject<boolean>();
   public logedInUser = new Subject<LogedInUser>();
   constructor(private http: HttpClient, private jwtUtilService: JwtUtilService) { }
@@ -41,6 +42,11 @@ export class AuthenticationService {
       }));
   }
 
+  signUp(email: string, password: string){
+    var headers: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post(this.signUpPath, JSON.stringify({email, password}), {headers});
+
+  }
   getToken(): String {
     
     var currentUser = JSON.parse(JSON.parse(JSON.stringify(localStorage.getItem('currentUser'))));

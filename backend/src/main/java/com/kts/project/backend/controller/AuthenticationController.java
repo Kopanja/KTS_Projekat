@@ -84,8 +84,7 @@ public class AuthenticationController {
         }
 
         try {
-        	//sifrovanje passworda
-        	userRequest.setPassword(passwordEncoder.encode(userRequest.getPassword()));
+        	
         	
             existUser = userService.create(userMapper.toEntity(userRequest));
             userAuthService.create(existUser.getId(), "ROLE_USER");

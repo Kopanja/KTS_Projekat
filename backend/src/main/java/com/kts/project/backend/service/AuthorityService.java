@@ -8,7 +8,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.kts.project.backend.model.Authority;
-import com.kts.project.backend.model.Type;
 import com.kts.project.backend.repository.AuthorityRepository;
 
 @Service
@@ -17,6 +16,9 @@ public class AuthorityService {
 	@Autowired
 	AuthorityRepository authorityRepo;
 
+	@Autowired
+	UserAuthorityService userAuthService;
+	
 	public List<Authority> findAll() {
 		return authorityRepo.findAll();
 	}
@@ -57,6 +59,7 @@ public class AuthorityService {
         if(existingAuthority == null){
             throw new Exception("Cultural content category with given id doesn't exist");
         }
+        userAuthService.deleteByAuthority(id);
         authorityRepo.delete(existingAuthority);
 		
 	}

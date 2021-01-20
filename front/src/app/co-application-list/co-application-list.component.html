@@ -1,0 +1,19 @@
+<table style="width:100%">
+    <tr>
+      <th>ID</th>
+      <th>Email</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Sub Type</th>
+      <th></th>
+    </tr>
+    <tr *ngFor = "let form of applicationFormList">
+        <td>{{form.id}}</td>
+        <td>{{form.email}}</td>
+        <td>{{form.name}}</td>
+        <td>{{form.type}}</td>
+        <td>{{form.subType}}</td>
+        <td><button class="btn btn-danger" id="approveButton" (click) = "approveButton(form.id)">Approve</button></td>
+        <td><button class="btn btn-danger" id="rejectButton" (click) = "rejectButton(form.id)">Reject</button></td>
+    </tr>
+    </table>
