@@ -34,6 +34,11 @@ public class CulturalOfferService {
 		return locationsRepo.findAll();
 	}
 	
+	
+	public CulturalOffer findById(Long id) {
+		return culturalOfferRepo.findById(id).orElse(null);
+	}
+	
 	public COLocation createLocation(COLocation entity) throws Exception {
         return locationsRepo.save(entity);
 	}

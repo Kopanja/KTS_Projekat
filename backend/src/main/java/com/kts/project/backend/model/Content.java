@@ -44,6 +44,15 @@ public class Content {
 		//this.pictures = pictures;
 	}
 
+	
+	public Content(Long id, String text, Set<PictureWraper> pictures, User user) {
+		super();
+		this.id = id;
+		this.text = text;
+		this.pictures = pictures;
+		this.user = user;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -67,6 +76,14 @@ public class Content {
 	public void setPictures(Set<String> pictures) {
 		this.pictures = pictures;
 	}
-*/	 
+*/
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}	 
 	 
 }
