@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { Observable, Subject } from 'rxjs';
 import {LogedInUser} from "../model/loged-in-user.model";
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -34,6 +35,7 @@ export class AuthenticationService {
           this.logedInUser.next(this.getCurrentUser());
           console.log(this.getCurrentUser());
           this.isLogedIn.next(true);
+          
           return true;
         }
         else {
@@ -47,12 +49,15 @@ export class AuthenticationService {
     return this.http.post(this.signUpPath, JSON.stringify({email, password}), {headers});
 
   }
-  getToken(): String {
+  getToken(): string {
     
-    var currentUser = JSON.parse(JSON.parse(JSON.stringify(localStorage.getItem('currentUser'))));
-    var token = currentUser.token;
+    let currentUser = JSON.parse(JSON.parse(JSON.stringify(localStorage.getItem('currentUser'))));
+    let token = "";
+    if(currentUser){
+      token = currentUser.token;
+    }
     console.log(token);
-    return token ? token : "";
+    return token;
   }
 
   logout(): void {
@@ -80,4 +85,11 @@ export class AuthenticationService {
     }
   }
 
+  isAuthenticated():boolean{
+    return this.jwtUtilService.isAuthenticated(this.getToken());
+  }
+
+  getCurrentUserRoles(){
+    return this.jwtUtilService.getRoles(this.getToken());
+  }
 }

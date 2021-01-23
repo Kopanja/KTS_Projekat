@@ -1,0 +1,48 @@
+.filteri-container {
+    padding: 2%;
+    border: 2px solid;
+    border-radius: 15px;
+}
+
+.tabela-dugme {
+    color: #f05454;
+    text-decoration: none;
+}
+
+.tabela {
+    color: #dddddd;
+}
+
+.list-text {
+    text-align: center;
+}
+
+.declineButton {
+    background-color: transparent;
+    border: 3px solid;
+    border-color: #f05454;
+    font-weight: 800;
+    font-size: 2rem;
+    color: #dddddd;
+}
+
+.acceptButton {
+    margin-right: 2%;
+    background-color:  #f05454;
+    border: 3px solid;
+    border-color: #f05454;
+    font-weight: 800;
+    font-size: 2rem;
+    color: #dddddd;
+}
+
+.offerReviewName {
+    text-align: right;
+    font-weight: 600;
+    color: #dddddd;
+    background-color: #f05454;
+}
+
+.textWrap {
+    word-break: break-all;
+}

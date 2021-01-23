@@ -22,4 +22,27 @@ export class TypeService {
   getAllSubTypesFromParent(parentId : number):Observable<SubType[]>{
     return this.http.get<SubType[]>(this.typePath + '/' + parentId + this.addSubTypePath);
   }
+
+  getTypeById(id : number):Observable<Type>{
+    return this.http.get<Type>(this.typePath+ '/' + id);
+  }
+
+  updateSubType(subType : SubType){
+    var headers: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.put(this.typePath +'/' + subType.parentType.id + this.addSubTypePath + '/' + subType.id, JSON.stringify(subType), {headers});
+  }
+
+  updateType(type : Type){
+    var headers: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.put(this.typePath +'/' + type.id, JSON.stringify(type), {headers});
+  }
+
+  deleteSubType(subType : SubType){
+    return this.http.delete(this.typePath +'/' + subType.parentType.id + this.addSubTypePath + '/' + subType.id);
+  }
+
+  addNewSubType(parentId : number, name : string){
+    var headers: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post(this.typePath +'/' + parentId + this.addSubTypePath, JSON.stringify({"name" : name}), {headers});
+  }
 }

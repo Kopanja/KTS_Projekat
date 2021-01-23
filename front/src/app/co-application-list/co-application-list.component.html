@@ -40,7 +40,7 @@
                   <td>{{form.name}}</td>
                   <td>{{form.type}}</td>
                   <td>{{form.subType}}</td>
-                  <td><a class="tabela-dugme" href="">MORE</a></td>
+                  <td><a class="tabela-dugme" role="button" *ngIf="form.id != undefined" (click) = "moreButton(form.id)">MORE</a></td>
               </tbody>
             </table>
       </div>

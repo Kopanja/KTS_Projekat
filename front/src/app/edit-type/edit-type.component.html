@@ -1,0 +1,77 @@
+<div class="container-fluid" id="editType">
+
+    <div class="d-flex justify-content-center">
+        <h1>EDIT OFFER TYPE</h1>
+       
+    </div>
+</div>
+
+
+
+  <div class="container-fluid d-flex justify-content-center" *ngIf="type != undefined">
+
+      <h2 style="color: #dddddd; font-weight: 600;">{{type.name}}</h2>
+      <button class="btn btn-danger mx-4 mb-2" id="editNameButton" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">EDIT NAME</button>
+
+  </div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Change Name</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="md-3">
+          <label for="newType" class="form-label" style="color: #f05454;">TYPE NEW NAME:</label>
+          <input class="form-control" id="newType" name="editTypeName" [(ngModel)] = "editTypeName">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" (click) = "editTypeButton()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+  <div class="container-fluid container-padding" id="pendingOffers">
+      
+      <div class="filteri-container" style="background-color: #222831;" id="pendingOffer">
+      <div class="row">
+        <h2>Offer Sub-Types:</h2>
+        <div class="col-lg-8">
+          <ul class="list-group">
+            <li class="list-group-item"  *ngFor="let subType of subTypes">
+                <input class="form-control" [disabled] = 'isInputDisabled' *ngIf="subType != undefined" placeholder= {{subType.name}} name="subTypeName" [(ngModel)] = "subType.name">
+                <a class="my-2 mx-2" style="color: #f05454; text-decoration: none;" role = "button" *ngIf = "isInputDisabled" (click) = "editButton()">EDIT</a>
+                <a style="color: black; text-decoration: none;" role = "button" *ngIf = "isInputDisabled" (click) = "deleteButton(subType)">DELETE</a>
+                <a class="my-2 mx-2" style="color: #f05454; text-decoration: none;" role = "button" *ngIf = "!isInputDisabled" (click) = "saveButton(subType)">SAVE</a>
+                <a style="color: black; text-decoration: none;" role = "button" *ngIf = "!isInputDisabled" (click) = "cancelButton()">CANCEL</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col">
+          <div class="md-3">
+            <label for="addNewType" class="form-label" style="color: #dddddd;">ADD NEW SUB-TYPE:</label>
+            <input class="form-control" id="addNewType"  [(ngModel)] = "newSubType">
+            <button class="btn btn-danger my-2" id="addNewTypeButton" type="submit" (click) = "addNewSubTypeButton()">Add Sub-Type</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="row container-padding">
+    <div class="col d-flex justify-content-end mt-4">
+      <button class="btn btn-danger acceptButton" id="acceptButton" type="button">SAVE TYPE</button>
+      <button class="btn btn-secondary declineButton" id="acceptButton" type="button">DELETE TYPE</button>
+    </div>
+  </div>
+  

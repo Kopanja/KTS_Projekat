@@ -17,7 +17,7 @@
                     <tbody class="tabela">
                       <tr *ngFor = "let type of types">
                         <td>{{type.name}}</td>
-                        <td><a class="tabela-dugme" href="">EDIT</a><a class="tabela-dugme" style="color: #dddddd;" href="">DELETE</a></td>
+                        <td><a class="tabela-dugme" role="button" (click) = 'editTypeButton(type.id)'>EDIT</a><a class="tabela-dugme" style="color: #dddddd;" role="button">DELETE</a></td>
                       </tr>
                     </tbody>
                   </table>

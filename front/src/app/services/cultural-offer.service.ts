@@ -26,6 +26,9 @@ export class CulturalOfferService {
 
   }
 
+  getApplicationFormById(id : number):Observable<CoApplicationForm>{
+    return this.http.get<CoApplicationForm>(this.applicatonFormPath + '/' + id);
+  }
   approveOffer(id : number){
     return this.http.get(this.applicatonFormPath + '/' + id + '/accept');
   }

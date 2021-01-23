@@ -1,0 +1,46 @@
+<div class="container-fluid" id="reviewOffer">
+
+    <div class="d-flex justify-content-center">
+        <h1>REVIEW OFFER</h1>
+    </div>
+</div>
+
+<!--Pending Offers-->
+
+<div class="container-fluid container-padding" id="pendingOffers">
+    
+    <div class=" filteri-container" style="background-color: #222831;" id="pendingOffer">
+    <div class="row">
+      <div class="col-lg-4 col-md-5 col-sm-5">
+        <ul class="list-group">
+          <li class="list-group-item offerReviewName">EMAIL:</li>
+          <li class="list-group-item offerReviewName">OFFER NAME:</li>
+          <li class="list-group-item offerReviewName">OFFER TYPE:</li>
+          <li class="list-group-item offerReviewName">OFFER SUB-TYPE:</li>
+          <li class="list-group-item offerReviewName">CONTACT INFORMATION:</li>
+          <li class="list-group-item offerReviewName">OFFER DESCRIPTION:</li>
+        </ul>
+      </div>
+      <div class="col-lg-8 col-md-7 col-sm-7">
+        <ul class="list-group" *ngIf="applicationForm">
+          <li class="list-group-item">{{applicationForm.email}}</li>
+          <li class="list-group-item">{{applicationForm.name}}</li>
+          <li class="list-group-item">{{applicationForm.type}}</li>
+          <li class="list-group-item">{{applicationForm.subType}}</li>
+          <li class="list-group-item">060123456</li>
+          <li class="list-group-item textWrap">asojdiojasiodjioajdiojasdjasoijdioasjdiojasiodjasnconaskcnzkncoiz ijadoijkZDNNDJna iaodn</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Accept/Decline-->
+
+<div class="row container-padding">
+  <div class="col d-flex justify-content-end mt-4">
+    <button class="btn btn-danger mr-4 acceptButton" id="acceptButton" type="button" (click) = "approveButton()">ACCEPT</button>
+    <button class="btn btn-secondary declineButton" id="acceptButton" type="button" (click) = "rejectButton()">DECLINE</button>
+  </div>
+</div>
+

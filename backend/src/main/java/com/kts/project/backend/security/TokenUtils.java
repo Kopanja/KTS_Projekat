@@ -1,5 +1,6 @@
 package com.kts.project.backend.security;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -7,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
@@ -28,7 +30,7 @@ public class TokenUtils {
     public String SECRET;
 
     // Period vazenja
-    @Value("1800000") // 5h
+    @Value("60000") // 5h
     private int EXPIRES_IN;
 
     // Naziv headera kroz koji ce se prosledjivati JWT u komunikaciji server-klijent
@@ -45,7 +47,7 @@ public class TokenUtils {
     private SignatureAlgorithm SIGNATURE_ALGORITHM = SignatureAlgorithm.HS512;
 
     // Funkcija za generisanje JWT token
-    public String generateToken(String username) {
+    public String generateToken(String username, Collection<? extends GrantedAuthority> collection) {
 
         return Jwts.builder()
                 .setIssuer(APP_NAME)
@@ -53,7 +55,7 @@ public class TokenUtils {
                 .setAudience(generateAudience())
                 .setIssuedAt(new Date())
                 .setExpiration(generateExpirationDate())
-                .claim("role", "ROLE_ADMIN") //moguce je postavljanje proizvoljnih podataka u telo JWT tokena
+                .claim("role", collection) //moguce je postavljanje proizvoljnih podataka u telo JWT tokena
                 .signWith(SIGNATURE_ALGORITHM, SECRET).compact();
     }
 
