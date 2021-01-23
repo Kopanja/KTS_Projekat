@@ -16,6 +16,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { CulturalOfferApplicationComponent } from './cultural-offer-application/cultural-offer-application.component';
 import { SuperAdminPageComponent } from './super-admin-page/super-admin-page.component';
 import { CoApplicationListComponent } from './co-application-list/co-application-list.component';
+import { TypesTableComponent } from './types-table/types-table.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +31,7 @@ import { CoApplicationListComponent } from './co-application-list/co-application
     CulturalOfferApplicationComponent,
     SuperAdminPageComponent,
     CoApplicationListComponent,
+    TypesTableComponent,
     
   ],
   imports: [

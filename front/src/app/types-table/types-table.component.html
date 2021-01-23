@@ -1,0 +1,35 @@
+    <div class="container-fluid container-padding" id="offerTypeList">
+        <div class="d-flex justify-content-center mt-4">
+          <button class="btn btn-danger mb-4 secondary-button" id="offerTypeListButton" type="button" data-bs-toggle="collapse" data-bs-target="#offerTypeLists" aria-expanded="false" aria-controls="offerTypeLists">OFFER TYPES</button>
+        </div>
+        
+        
+        <div class="collapse filteri-container" style="background-color: #222831;" id="offerTypeLists">
+        <div class="row">
+            <div class="col">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th style="background-color: #f05454; color: #dddddd;" scope="col">OFFER TYPE NAME</th>
+                        <th style="background-color: #f05454; color: #dddddd;" scope="col"></th>
+                      </tr>
+                    </thead>
+                    <tbody class="tabela">
+                      <tr *ngFor = "let type of types">
+                        <td>{{type.name}}</td>
+                        <td><a class="tabela-dugme" href="">EDIT</a><a class="tabela-dugme" style="color: #dddddd;" href="">DELETE</a></td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+            
+              <div class="col">
+                <div class="md-3">
+                    <label for="addNewType" class="form-label" style="color: #dddddd;">ADD NEW TYPE:</label>
+                    <input class="form-control" id="addNewType">
+                    <button class="btn btn-danger my-2" id="addNewTypeButton" type="submit">Add Type</button>
+                  </div>
+              </div>
+        </div>
+    </div>
+    </div>

@@ -1,4 +1,4 @@
-<table style="width:100%">
+<!--table style="width:100%">
     <tr>
       <th>ID</th>
       <th>Email</th>
@@ -13,7 +13,36 @@
         <td>{{form.name}}</td>
         <td>{{form.type}}</td>
         <td>{{form.subType}}</td>
-        <td><button class="btn btn-danger" id="approveButton" (click) = "approveButton(form.id)">Approve</button></td>
-        <td><button class="btn btn-danger" id="rejectButton" (click) = "rejectButton(form.id)">Reject</button></td>
+        <td><button class="btn btn-danger" id="approveButton" *ngIf="form.id != undefined" (click) = "approveButton(form.id)">Approve</button></td>
+        <td><button class="btn btn-danger" id="rejectButton" *ngIf="form.id != undefined" (click) = "rejectButton(form.id)">Reject</button></td>
     </tr>
-    </table>
+    </table-->
+    
+    <div class="container-fluid container-padding" id="pendingOffers">
+      <div class="d-flex justify-content-center mt-2">
+        <button class="btn btn-danger mb-4 secondary-button" id="pendingOfferButton" type="button" data-bs-toggle="collapse" data-bs-target="#pendingOffer" aria-expanded="false" aria-controls="pendingOffer">PENDING OFFERS</button>
+      </div>
+      
+      
+      <div class="collapse filteri-container" style="background-color: #222831;" id="pendingOffer">
+      <div>
+          <table class="table">
+              <thead>
+                <tr>
+                  <th style="background-color: #f05454; color: #dddddd;" scope="col">OFFER NAME</th>
+                  <th style="background-color: #f05454; color: #dddddd;" scope="col">OFFER TYPE</th>
+                  <th style="background-color: #f05454; color: #dddddd;" scope="col">OFFER SUB-TYPE</th>
+                  <th style="background-color: #f05454; color: #dddddd;" scope="col"></th>
+                </tr>
+              </thead>
+              <tbody class="tabela">
+                <tr *ngFor = "let form of applicationFormList">
+                  <td>{{form.name}}</td>
+                  <td>{{form.type}}</td>
+                  <td>{{form.subType}}</td>
+                  <td><a class="tabela-dugme" href="">MORE</a></td>
+              </tbody>
+            </table>
+      </div>
+  </div>
+  </div>
